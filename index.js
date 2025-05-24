@@ -74,7 +74,7 @@ for(let i=0;i<NoOfLift.value;i++){
                 <div >          
                 </div>
                 `;
-                 
+    lift.isbusy=false
     lift_space.append(lift)
     //console.dir(lift)
 
@@ -92,16 +92,37 @@ const down_btn=document.getElementsByClassName("down_btn")
 let i=0
 
 function movelift(e){
-    const j=i;
+    let j=i;
     //console.log("btn location ",e.pageY);
     let lift=document.getElementsByClassName("lift")
+    console.log(lift)
+
     //console.log("lift location ",lift[i]?.offsetTop," lift number ",i)
-    let distance=(lift[i]?.offsetTop-e.pageY)+55;
-    //console.log("distance  ",distance)
 
-    i<=NoOfLift.value&&lift[i].setAttribute("style",`transition-duration: 10000ms; translate:0px -${distance}px;`);
+    let distance=null;
 
+    for(let i=0;i<NoOfLift.value;i++){
+        console.log("lift location ",lift[i]?.offsetTop," lift number ",i)
+        
+        if(lift[i]?.isbusy==false){
+        
+        let Newdistance=(lift[i]?.offsetTop-e.pageY)+55
+
+        if(Newdistance<distance || distance==null){
+
+            distance=Newdistance
+            j=i;
+        }
+
+        console.log(i,Newdistance)
+    }
+    }
     
+    // console.log("distance  ",distance)
+
+   if(distance!==null){
+    lift[j].setAttribute("style",`transition-duration: 10000ms; translate:0px -${distance}px;`);
+    lift[j].isbusy=true;
 
     setTimeout(()=>{
         //console.log("j in set ",j)
@@ -118,14 +139,16 @@ function movelift(e){
                 <div>          
                 </div>
                 `;
-        i=j
-        console.log("lift =",i)
+        lift[j].isbusy=false;
+        console.log("lift false =",j)
         },10000)
     },10000)
 
-    i<NoOfLift.value?i++:i=0;
-
     console.log("lift ++ ",i)
+   }
+
+
+    
 
 }
 
