@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+form{
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+.N_floor{
+    height: 8rem;
+    display: flex;
+    border-bottom: 2px solid black;
+    justify-content: space-between;
+}
+.lift_btn{
+    width: 5rem;
+    height: 100%;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+}
+
+.lift_space{
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.lift{
+    background-color:blue;
+    width: 4rem;
+    height: 7rem;
+    display: flex;
+    border: 1px solid black;
+    justify-content: space-around;
+    overflow: hidden;
+}
+
+.lift div{
+    background-color: white;
+    width: 2rem;
+    border: 1px solid black;
+} 
+
+@keyframes slide-in-left {
+from {
+    translate: 0rem;
+}
+
+to {
+    translate: -2rem;
+    
+}
+}
+
+@keyframes slide-in-right {
+from {
+    translate: 0rem;
+    
+}
+
+to {
+    translate: 2rem;
+    
+}
+}
+.lift .left_door{
+    animation-duration: 5s;
+    animation-name: slide-in-left;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.lift .right_door{
+    animation-duration: 5s;
+    animation-name: slide-in-right;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+
+.floor_no{
+    display: flex;
+    width: 5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+
