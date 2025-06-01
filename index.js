@@ -93,7 +93,7 @@ let i=0
 
 function movelift(e){
     let j=i;
-    //console.log("btn location ",e.pageY);
+    console.log("btn location ",e.srcElement.offsetTop);
     let lift=document.getElementsByClassName("lift")
     console.log(lift)
 
@@ -102,15 +102,18 @@ function movelift(e){
     let distance=null;
 
     for(let i=0;i<NoOfLift.value;i++){
+
         console.log("lift location ",lift[i]?.offsetTop," lift number ",i)
         
         if(lift[i]?.isbusy==false){
         
-        let Newdistance=(lift[i]?.offsetTop-e.pageY)+55
+        let Newdistance=(lift[i]?.offsetTop-e.srcElement.offsetTop)
+
+        console.log(Newdistance ,i)
 
         if(Newdistance<distance || distance==null){
 
-            distance=Newdistance
+            distance=Newdistance+40
             j=i;
         }
 
@@ -146,10 +149,6 @@ function movelift(e){
 
     console.log("lift ++ ",i)
    }
-
-
-    
-
 }
 
 for(let i=0;i<up_btn.length;i++){

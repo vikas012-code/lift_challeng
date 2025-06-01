@@ -92,4 +92,13 @@ to {
     align-items: center;
 }
 
+input{
+    padding: 5px;
+    border-radius: 10px;
+}
+
+button{
+    border-radius: 10px;
+    padding: 5px;
+}
 
