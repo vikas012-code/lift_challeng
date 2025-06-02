@@ -90,12 +90,11 @@ const down_btn=document.getElementsByClassName("down_btn")
 //console.log(down_btn)
 
 let i=0
-
 function movelift(e){
     let j=i;
     console.log("btn location ",e.srcElement.offsetTop);
     let lift=document.getElementsByClassName("lift")
-    console.log(lift)
+    // console.log(lift)
 
     //console.log("lift location ",lift[i]?.offsetTop," lift number ",i)
 
@@ -109,26 +108,39 @@ function movelift(e){
         
         let Newdistance=(lift[i]?.offsetTop-e.srcElement.offsetTop)
 
-        console.log(Newdistance ,i)
 
-        if(Newdistance<distance || distance==null){
-
-            distance=Newdistance+40
+        if(Math.abs(Newdistance)<Math.abs(distance) || distance==null){
             j=i;
-        }
+            distance=Newdistance+100;
+            console.log("it works and values are i j new", i, j, Newdistance)
 
-        console.log(i,Newdistance)
+        }
+        console.log(Newdistance ,j)
     }
     }
     
     // console.log("distance  ",distance)
 
    if(distance!==null){
-    lift[j].setAttribute("style",`transition-duration: 10000ms; translate:0px -${distance}px;`);
+    //translate:0px ${-distance}px
+    lift[j].setAttribute("style",`position: absolute;left:${(j+1)*81}px;top:${N_floor.offsetTop}px; ;transition: top 10s ease;`);
+    
     lift[j].isbusy=true;
 
+    // lift[j].style.left=`${}px`;
+
+    
+    setTimeout(()=>{
+        lift[j].style.top=`${e.srcElement.offsetTop-40}px`
+    },0)
     setTimeout(()=>{
         //console.log("j in set ",j)
+        
+        // console.log("distance",e.srcElement.offsetTop)
+        
+    
+
+        console.dir(lift[j])
         lift[j].innerHTML=`
                 <div class="left_door">          
                 </div>
@@ -143,12 +155,13 @@ function movelift(e){
                 </div>
                 `;
         lift[j].isbusy=false;
-        console.log("lift false =",j)
+        // console.log("lift false =",j)
         },10000)
     },10000)
 
-    console.log("lift ++ ",i)
+    // console.log("lift ++ ",i)
    }
+   console.log("round finished.....")
 }
 
 for(let i=0;i<up_btn.length;i++){
